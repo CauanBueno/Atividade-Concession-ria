@@ -23,7 +23,7 @@ def cadastrarCliente():
 
 
 
-###################################################################### Dados Clientes(novas vendas)
+###################################################################### Dados Clientes(novas vendas) NESCESSÁRIO ALTERAÇÃO
 vendas = []
 def cadastrarVenda():
     try:
