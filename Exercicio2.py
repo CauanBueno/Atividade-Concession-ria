@@ -50,30 +50,40 @@ def alterarClientes():
 
 ###################################################################### Novas vendas
 vendas = []
+
 def cadastrarVenda():
     try:
         venda = {
             "Código": 0,
             "Nome cliente": "",
-            "Veículo": "",
-            "Ano veículo": "",
-            "Valor compra": "",
+            "marca": "",
+            "modelo": "",
+            "Ano veículo": 0,
+            "Valor compra": 0,
         }
         venda["Código"] = len(vendas) + 1
         venda["Nome cliente"] = input("Digite nome completo do cliente: ")
-        venda["Veículo"] = input("Digite marca do veículo adquirido: ")
+        venda["marca"] = input("Digite marca do veículo adquirido: ")
+        venda["modelo"] = input("Digite o modelo do veículo adquirido: ")
         venda["Ano veículo"] = int(input("Digite ano do veículo(yyyy): "))
         venda["Valor compra"] = int(input("Valor total compra R$: "))
         vendas.append(venda)
+        
         print("")
         print("                      Venda cadastrada com sucesso!!!")
     except:
         print("")
         print("ERRO AO CADASTRAR A VENDA!")
 def visualizarVendas():
+    soma = 0
     for venda in vendas:
         print(venda)
-#        fazer soma das vendas
+            
+        soma = soma + venda["Valor compra"]
+    
+    print("")    
+    print("O valor total de vendas foi de R$ ",soma)
+        
     print("")
     input ("Clique qualquer tecla para retornar ao menu inicial")
     print("")
@@ -155,6 +165,10 @@ def opcaoAlterarDados():
     except:
         print("")
         print ("OPÇÃO INVÁLIDA!")
+        
+def estoqueCarros():
+    
+    ...
 
 ###################################################################### Menu
 def iniciar():
