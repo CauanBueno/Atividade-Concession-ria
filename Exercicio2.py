@@ -71,6 +71,26 @@ def cadastrarVenda():
         
         print("")
         print("                      Venda cadastrada com sucesso!!!")
+    
+    
+        #subtraçao do estoque
+        #para funcionar a subtraçao e necessario a confirmaçao de que a venda doi bem sucedida,
+        # no caso a venda esta criando outra lista e nao conectando. por isso ela esta criando numeros falso
+        #
+        #print("")
+        #print("")
+        
+        ###if Quantidade >0
+        ###    next
+        ###else Quantidade =<0
+        ###    print("não foi possivel concretizar a compra")  
+        ###if Quantidade >0
+        ###    next
+        ###else Quantidade =<0
+        ###    print("não foi possivel concretizar a compra")    
+            
+        
+        
     except:
         print("")
         print("ERRO AO CADASTRAR A VENDA!")
@@ -80,6 +100,7 @@ def visualizarVendas():
         print(venda)
             
         soma = soma + venda["Valor compra"]
+    
     
     print("")    
     print("O valor total de vendas foi de R$ ",soma)
@@ -95,12 +116,14 @@ def cadastrarCarro():
         carro = {
             "Código Carro": 0,
             "Marca": "",
+            "Modelo": "",
             "Ano": "",
             "Quantidade": "",
             "Valor R$": "",
         }
         carro["Código Carro"] = len(carros) + 1
         carro["Marca"] = input("Digite marca do carro: ")
+        carro["Modelo"] = input("Digite modelo do carro: ")
         carro["Ano"] = int(input("Digite ano do carro(yyyy): "))
         carro["Quantidade"] = int(input("Quantidade comprada: "))
         carro["Valor R$"] = int(input("Valor R$: "))
@@ -167,8 +190,15 @@ def opcaoAlterarDados():
         print ("OPÇÃO INVÁLIDA!")
         
 def estoqueCarros():
+    print("")
+    print("")
     
-    ...
+    for Quantidade in carros:
+        if estoqueCarros <= len(carros):
+            Quantidade = list(filter(lambda e: ["Quantidade"] == Quantidade, carros))
+        ### isso é so um demonstrativo de fazer a leitura da qunatidade, necessita da conexão, para que a subtração de estoque funcione 
+
+
 
 ###################################################################### Menu
 def iniciar():
@@ -201,8 +231,9 @@ def iniciar():
                 opcaoAlterarDados()
             case 5:
                 visualizarVendas()
-            case 6:
+            case 6: 
                 visualizarCarros()
+                
             case 7:
                 print ("Saindo...")
                 print ("")
