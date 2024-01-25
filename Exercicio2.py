@@ -322,7 +322,9 @@ def iniciar():
             case 5:
                 visualizarVendas()
             case 6: 
+            case 6: 
                 visualizarCarros()
+                
                 
             case 7:
                 print("")
