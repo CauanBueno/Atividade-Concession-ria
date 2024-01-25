@@ -35,7 +35,7 @@ def alterarClientes():
             
             if cliente:
                 clientes.remove(cliente)
-                cliente["codigo"] = len(clientes) + 1
+                cliente["codigo"] = len(clientes)
                 cliente["nomeCliente"] = input("Digite nome completo do cliente: ")
                 cliente["dataNascimento"] = input("Digite a data de nascimento do cliente: ")
                 cliente["documento"] = int(input("Digite um documento do cliente: "))
@@ -217,7 +217,7 @@ def alterarCarros():
             
             if carro:
                 carros.remove(carro)
-                carro["codigoCarro"] = len(carros) + 1
+                carro["codigoCarro"] = len(carros)
                 carro["marca"] = input("Digite marca do carro: ")
                 carro["modelo"] = input("Digite modelo do carro: ")
                 carro["ano"] = int(input("Digite ano do carro(yyyy): "))
