@@ -1,3 +1,35 @@
+############################################################# Função cadastro de Carros
+carros = []
+def cadastrarCarro():
+    try:
+        carro = {
+            "codigoCarro": 0,
+            "marca": "",
+            "modelo": "",
+            "ano": "",
+            "quantidade": "",
+            "valor": "",
+        }
+        carro["codigoCarro"] = len(carros) + 1
+        carro["marca"] = input("Digite marca do carro: ")
+        carro["modelo"] = input("Digite modelo do carro: ")
+        carro["ano"] = int(input("Digite ano do carro(yyyy): "))
+        carro["quantidade"] = int(input("Quantidade comprada: "))
+        carro["valor"] = int(input("Valor R$: "))
+        carros.append(carro)
+        print("")
+        print("                      Carro cadastrado com sucesso!!!")
+        print("")
+        input ("Clique qualquer tecla para retornar ao menu inicial")
+        print("")
+    except:
+        print("")
+        print("ERRO AO EFETUAR O CADASTRO!")
+        print("")
+        print("")
+        input ("Clique qualquer tecla para retornar ao menu inicial")
+        print("")
+
 clientes = []
 def cadastrarCliente():
     try:
@@ -21,48 +53,7 @@ def cadastrarCliente():
     print("")
     input ("Clique qualquer tecla para retornar ao menu inicial")
     print("")
-
-def alterarClientes():
-    try:
-        for cliente in clientes:
-            print(f'{cliente["codigoCliente"]}; {cliente["nomeCliente"]}')
-        
-        codigo = int(input("Digite o código do cliente a ser alterao: "))
-        
-        if codigo <= len(clientes): 
-            
-            cliente = list(filter(lambda c: c["codigoCliente"] == codigo, clientes))[0]
-            
-            if cliente:
-                clientes.remove(cliente)
-                cliente["codigo"] = len(clientes)
-                cliente["nomeCliente"] = input("Digite nome completo do cliente: ")
-                cliente["dataNascimento"] = input("Digite a data de nascimento do cliente: ")
-                cliente["documento"] = int(input("Digite um documento do cliente: "))
-                
-                clientes.append(cliente)
-                print("")
-                print("                      Cadastro alterado com sucesso!!!")
-                print("")
-                print("")
-                input ("Clique qualquer tecla para retornar ao menu inicial")
-                print("")
-        else:
-            print("")
-            print("Código inválido!")
-            print("")
-            print("")
-            input ("Clique qualquer tecla para retornar ao menu inicial")
-            print("")
     
-    except:
-        print("")
-        print("Erro ao alterar os dados!")
-        print("")
-        print("")
-        input ("Clique qualquer tecla para retornar ao menu inicial")
-        print("")
-
 ###################################################################### Novas vendas
 vendas = []
 
@@ -147,60 +138,34 @@ def realizadorVenda():
         print("")
         input ("Clique qualquer tecla para retornar ao menu inicial")
         print("")
-def visualizarVendas():
-    soma = 0
-    for venda in vendas:
-        print(venda)
-            
-        soma = soma + venda["valor"]
-    
-    
-    print("")    
-    print("O valor total de vendas foi de R$ ",soma)
-        
-    print("")
-    input ("Clique qualquer tecla para retornar ao menu inicial")
-    print("")
 
-############################################################# Dados e estoque Carros
-carros = []
-def cadastrarCarro():
+###################################################################### Opções de Alteração de dados
+def opcaoAlterarDados():
+    print ("(1) Alterar as informações dos carros")
+    print ("(2) Alterar os dados dos clientes")
+    print("")
     try:
-        carro = {
-            "codigoCarro": 0,
-            "marca": "",
-            "modelo": "",
-            "ano": "",
-            "quantidade": "",
-            "valor": "",
-        }
-        carro["codigoCarro"] = len(carros) + 1
-        carro["marca"] = input("Digite marca do carro: ")
-        carro["modelo"] = input("Digite modelo do carro: ")
-        carro["ano"] = int(input("Digite ano do carro(yyyy): "))
-        carro["quantidade"] = int(input("Quantidade comprada: "))
-        carro["valor"] = int(input("Valor R$: "))
-        carros.append(carro)
-        print("")
-        print("                      Carro cadastrado com sucesso!!!")
-        print("")
-        input ("Clique qualquer tecla para retornar ao menu inicial")
-        print("")
+        opcao1 = int(input("Quais dados deseja alterar (1 ou 2)?: "))
+        match opcao1:
+            case 1:
+                alterarCarros()
+            case 2:
+                alterarClientes()
+            case _:
+                print("")
+                print ("OPÇÃO INVÁLIDA!")
+                print("")
+                print("")
+                print("")
+                input ("Clique qualquer tecla para retornar ao menu inicial")
+                print("")
     except:
         print("")
-        print("ERRO AO EFETUAR O CADASTRO!")
+        print ("OPÇÃO INVÁLIDA!")
         print("")
         print("")
         input ("Clique qualquer tecla para retornar ao menu inicial")
         print("")
-
-def visualizarCarros():
-    for carro in carros:
-        print(carro)
-        
-    print("")
-    input ("Clique qualquer tecla para retornar ao menu inicial")
-    print("")
 
 def alterarCarros():
     try:
@@ -210,6 +175,8 @@ def alterarCarros():
         print("")
         print("") 
         codigo = int(input("Digite o código do carro a ser alterao: "))
+        print ("")
+        print ("")
         
         if codigo <= len(carros):
             
@@ -247,34 +214,73 @@ def alterarCarros():
         input ("Clique qualquer tecla para retornar ao menu inicial")
         print("")
 
-###################################################################### Opções de Alteração de dados
-def opcaoAlterarDados():
-    print ("(1) Alterar as informações dos carros")
-    print ("(2) Alterar os dados dos clientes")
-    print("")
+def alterarClientes():
     try:
-        opcao1 = int(input("Quais dados deseja alterar (1 ou 2)?: "))
-        match opcao1:
-            case 1:
-                alterarCarros()
-            case 2:
-                alterarClientes()
-            case _:
+        for cliente in clientes:
+            print(f'{cliente["codigoCliente"]}; {cliente["nomeCliente"]}')
+        print ("")
+        print ("")
+        codigo = int(input("Digite o código do cliente a ser alterao: "))
+        print ("")
+        print ("")
+        
+        if codigo <= len(clientes): 
+            
+            cliente = list(filter(lambda c: c["codigoCliente"] == codigo, clientes))[0]
+            
+            if cliente:
+                clientes.remove(cliente)
+                cliente["codigo"] = len(clientes)
+                cliente["nomeCliente"] = input("Digite nome completo do cliente: ")
+                cliente["dataNascimento"] = input("Digite a data de nascimento do cliente: ")
+                cliente["documento"] = int(input("Digite um documento do cliente: "))
+                
+                clientes.append(cliente)
                 print("")
-                print ("OPÇÃO INVÁLIDA!")
-                print("")
+                print("                      Cadastro alterado com sucesso!!!")
                 print("")
                 print("")
                 input ("Clique qualquer tecla para retornar ao menu inicial")
                 print("")
+        else:
+            print("")
+            print("Código inválido!")
+            print("")
+            print("")
+            input ("Clique qualquer tecla para retornar ao menu inicial")
+            print("")
+    
     except:
         print("")
-        print ("OPÇÃO INVÁLIDA!")
+        print("Erro ao alterar os dados!")
         print("")
         print("")
         input ("Clique qualquer tecla para retornar ao menu inicial")
         print("")
+
+def visualizarVendas():
+    soma = 0
+    for venda in vendas:
+        print(venda)
+            
+        soma = soma + venda["valor"]
+    
+    
+    print("")    
+    print("O valor total de vendas foi de R$ ",soma)
         
+    print("")
+    input ("Clique qualquer tecla para retornar ao menu inicial")
+    print("")
+
+def visualizarCarros():
+    for carro in carros:
+        print(carro)
+        
+    print("")
+    input ("Clique qualquer tecla para retornar ao menu inicial")
+    print("")
+
 def estoqueCarros():
     print("")
     print("")
@@ -287,8 +293,6 @@ def estoqueCarros():
     input ("Clique qualquer tecla para retornar ao menu inicial")
     print("")
         ### isso é so um demonstrativo de fazer a leitura da qunatidade, necessita da conexão, para que a subtração de estoque funcione 
-
-
 
 ###################################################################### Menu
 def iniciar():
@@ -349,6 +353,5 @@ while iniciar() == False:
     print ("")
     print ("")
     print ("=================== Retornando ao menu... ===================")
-    print("")
-    input ("Clique qualquer tecla para retornar ao menu inicial")
-    print("")
+    print ("")
+    print ("")
